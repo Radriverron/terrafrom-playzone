@@ -61,7 +61,7 @@ resource "aws_security_group" "kt-sg" {
   ingress {
     cidr_blocks = ["${var.my-ip}"]
     from_port   = 80
-    protocol    = "http"
+    protocol    = "tcp"
     to_port     = 80
   }
 
@@ -85,7 +85,7 @@ resource "aws_security_group" "kt-sg" {
 
 #ssh public key for ec2
 resource "aws_key_pair" "kt-key" {
-  key_name   = ktkey
+  key_name   = "ktkey"
   public_key = file("~/.ssh/ktkey.pub")
 
 }
