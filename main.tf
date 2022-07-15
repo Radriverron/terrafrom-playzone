@@ -26,19 +26,19 @@ resource "aws_subnet" "kt-public-subnet1" {
   map_public_ip_on_launch = true
   availability_zone       = "${var.aws-region}a"
 
-  tags = merge(local.common_tags, { Name = "${var.res-name}-sub1" })
+  tags = merge(local.my_tags, { Name = "${var.res-name}-sub1" })
 
 }
 
 resource "aws_internet_gateway" "kt-igw" {
   vpc_id = aws_vpc.kt-tf.id
-  tags   = merge(local.common_tags, { Name = "${var.res-name}-igw" })
+  tags   = merge(local.my_tags, { Name = "${var.res-name}-igw" })
 
 }
 
 resource "aws_route_table" "kt-rtb" {
   vpc_id = aws_vpc.kt-tf.id
-  tags   = merge(local.common_tags, { Name = "${var.res-name}-rtb" })
+  tags   = merge(local.my_tags, { Name = "${var.res-name}-rtb" })
 }
 
 resource "aws_route" "kt-rt" {
@@ -79,8 +79,8 @@ resource "aws_security_group" "kt-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  #tags = local.common_tags
-  tags = merge(local.common_tags, { Name = "${var.res-name}-pub-sg" })
+  #tags = local.my_tags
+  tags = merge(local.my_tags, { Name = "${var.res-name}-pub-sg" })
 }
 
 #ssh public key for ec2
@@ -98,8 +98,8 @@ resource "aws_instance" "kt-ec2-nginx" {
   key_name        = aws_key_pair.kt-key.key_name
   user_data       = file("userdata.tpl")
 
-  #tags = local.common_tags
-  tags = merge(local.common_tags, { Name = "${var.res-name}-nginx1" })
+  #tags = local.my_tags
+  tags = merge(local.my_tags, { Name = "${var.res-name}-nginx1" })
 
 }
 
