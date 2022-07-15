@@ -6,6 +6,7 @@
 
 #state files for now
 *.tfstate
+*.backup
 
 # lock file
 *.lock.hcl
