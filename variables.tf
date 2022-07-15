@@ -38,6 +38,6 @@ variable "team" {
 
 variable "my-ip" {
   type    = string
-  default = "x.x.x.x/32"
+  default = "0.0.0.0/32"
 
 }
